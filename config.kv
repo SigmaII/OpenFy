@@ -1,0 +1,95 @@
+MDScreenManager:
+    HomeScreen:
+    SettingsScreen:
+    SearchScreen
+
+<HomeScreen>:
+    name: "home"
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "OpenFy"
+            right_action_items: [["magnify", lambda x: app.navigate("search")]]
+            left_action_items: [["cog", lambda x: app.navigate("settings")]]
+
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: dp(10)
+            spacing: dp(10)
+
+            MDLabel:
+                text: "Playlist plugin coming soon..."
+                font_style: "H5"
+                halign: "center"
+
+            ScrollView:
+                MDList:
+                    id: playlist_list
+            
+            
+
+        MDBoxLayout:
+            size_hint_y: 0.15
+            padding: dp(10)
+            spacing: dp(10)
+            md_bg_color: 0.1, 0.1, 0.1, 1
+
+            #MDIconButton:
+            #    icon: "skip-previous"
+            #    on_press: app.previous_track()
+            MDIconButton:
+                id: music_button
+                icon: "play-pause"
+                on_press: app.play_or_stop()
+            #MDIconButton:
+            #    icon: "skip-next"
+            #    on_press: app.next_track()
+            MDLabel:
+                id: current_song
+                text: app.current_s
+                halign: "center"
+
+        MDBoxLayout:
+            size_hint_y: 0.1
+            padding: dp(10)
+            spacing: dp(10)
+            md_bg_color: 0.15, 0.15, 0.15, 1
+
+            MDIconButton:
+                icon: "home"
+                on_press: app.navigate("home")
+            #MDIconButton:
+            #    icon: "cog"
+            #    on_press: app.navigate("settings")
+
+<SettingsScreen>:
+    name: "settings"
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Settings"
+            left_action_items: [["arrow-left", lambda x: app.navigate("home")]]
+        MDBoxLayout:
+            padding: dp(10)
+            spacing: dp(10)
+
+<SearchScreen>:
+    name: "search"
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(10)
+
+        MDTopAppBar:
+            title: "Research"
+            left_action_items: [["arrow-left", lambda x: app.navigate("home")]]
+        MDTextField:
+            id: search_field
+            hint_text: 'Song research...'
+            on_text_validate: app.perform_search(self.text)
+
+        ScrollView:
+            MDList:
+                id: search_results

@@ -1,0 +1,14 @@
+httpx==0.14.2
+youtube-search-python
+rfc3986
+certifi
+sniffio
+idna
+h11==0.9.0
+httpcore==0.10.2
+httpx==0.14.2
+kivy
+kivymd
+yt_dlp
+ffpyplayer
+
